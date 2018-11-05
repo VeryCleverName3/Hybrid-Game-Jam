@@ -6,6 +6,7 @@ export(int) var jumpspeed
 var velocity = Vector2()
 var xscl
 var yscl
+signal kill
 
 func _ready():
 	xscl = (get_viewport().size.x / 1024) * .5
@@ -31,3 +32,7 @@ func _physics_process(delta):
 		velocity.y = -jumpspeed
 		
 	move_and_slide(velocity, Vector2(0, -1))
+	
+func _process(delta):
+	if (self.position.y > get_viewport().size.y):
+		emit_signal("kill")
