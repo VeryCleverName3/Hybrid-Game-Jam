@@ -7,6 +7,7 @@ var velocity = Vector2()
 var xscl
 var yscl
 signal kill
+signal pause
 
 func _ready():
 	xscl = (get_viewport().size.x / 1024) * .5
@@ -30,6 +31,8 @@ func _physics_process(delta):
 		velocity.x -= walkspeed
 	if (Input.is_action_just_pressed("ui_space") && is_on_floor()):
 		velocity.y = -jumpspeed
+	if (Input.is_action_pressed("ui_cancel")):
+		emit_signal("pause")
 		
 	move_and_slide(velocity, Vector2(0, -1))
 	
