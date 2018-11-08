@@ -10,8 +10,8 @@ signal kill
 signal pause
 
 func _ready():
-	xscl = (get_viewport().size.x / 1024) * .5
-	yscl = (get_viewport().size.y / 600) * .5
+	xscl = (get_viewport().size.x / 1024) * .25
+	yscl = (get_viewport().size.y / 600) * .25
 	# Scale the sprites
 	$TopSprite.scale = Vector2(xscl, yscl)
 	$TopSprite.position = Vector2(0, -((xscl * 100) / 2))
@@ -24,6 +24,8 @@ func _ready():
 	
 func _physics_process(delta):
 	velocity.y += delta * gravity
+	if(is_on_floor()):
+		velocity.y = 0
 	velocity.x = 0
 	if (Input.is_action_pressed("ui_right")):
 		velocity.x += walkspeed
