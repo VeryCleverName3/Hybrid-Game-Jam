@@ -3,9 +3,13 @@ extends KinematicBody2D
 export(int) var gravity
 export(int) var walkspeed
 export(int) var jumpspeed
+export(int) var maxNumJumps  = 1
+var touchingGround = false; #Setting velocity.y to 0 also makes is_on_floor() false;
+var groundCounter = 1
 var velocity = Vector2()
 var xscl
 var yscl
+var numJumps = 0
 signal kill
 signal pause
 
@@ -25,14 +29,24 @@ func _ready():
 func _physics_process(delta):
 	velocity.y += delta * gravity
 	if(is_on_floor()):
-		velocity.y = 0
+		velocity.y = 0.1
+		numJumps = maxNumJumps - 1
+		touchingGround = true
+		groundCounter = 1
+	else:
+		groundCounter -= 1
+		if(groundCounter < 0):
+			touchingGround = false
 	velocity.x = 0
 	if (Input.is_action_pressed("ui_right")):
 		velocity.x += walkspeed
 	if (Input.is_action_pressed("ui_left")):
 		velocity.x -= walkspeed
-	if (Input.is_action_just_pressed("ui_space") && is_on_floor()):
+	if (Input.is_action_just_pressed("ui_space") && touchingGround):
 		velocity.y = -jumpspeed
+	elif (Input.is_action_just_pressed("ui_space") && numJumps > 0):
+		velocity.y = -jumpspeed
+		numJumps -= 1
 	if (Input.is_action_pressed("ui_cancel")):
 		emit_signal("pause")
 		
