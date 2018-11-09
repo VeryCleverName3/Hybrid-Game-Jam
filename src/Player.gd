@@ -4,14 +4,25 @@ export(int) var gravity
 export(int) var walkspeed
 export(int) var jumpspeed
 export(int) var maxNumJumps  = 1
+export(int) var boostMultiplier = 1
+export(String) var ab1
+export(String) var ab2
+var boostSpeed = 1
 var touchingGround = false; #Setting velocity.y to 0 also makes is_on_floor() false;
 var groundCounter = 1
 var velocity = Vector2()
 var xscl
 var yscl
 var numJumps = 0
+var canBoost = true
 signal kill
 signal pause
+
+func boost():
+	if (canBoost):
+		boostSpeed=boostMultiplier
+		$boostTime.start()
+		canBoost = false
 
 #func _ready():
 #	xscl = (get_viewport().size.x / 1024) * .25
@@ -39,9 +50,9 @@ func _physics_process(delta):
 			touchingGround = false
 	velocity.x = 0
 	if (Input.is_action_pressed("ui_right")):
-		velocity.x += walkspeed
+		velocity.x += walkspeed * boostSpeed
 	if (Input.is_action_pressed("ui_left")):
-		velocity.x -= walkspeed
+		velocity.x -= walkspeed * boostSpeed
 	if (Input.is_action_just_pressed("ui_space") && touchingGround):
 		velocity.y = -jumpspeed
 	elif (Input.is_action_just_pressed("ui_space") && numJumps > 0):
@@ -49,9 +60,16 @@ func _physics_process(delta):
 		numJumps -= 1
 	if (Input.is_action_pressed("ui_cancel")):
 		emit_signal("pause")
+	if (Input.is_action_pressed("ui_ability1")):
+		if (ab1 =="boost"):
+			boost();
 		
 	move_and_slide(velocity, Vector2(0, -1))
 	
 func _process(delta):
 	if (self.position.y > get_viewport().size.y):
 		emit_signal("kill")
+
+func _on_boostTime_timeout():
+	canBoost = true
+	boostSpeed = 1
