@@ -36,7 +36,7 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 gravity = 300
-walkspeed = 200
+walkspeed = 400
 jumpspeed = 300
 maxNumJumps = 1
 
