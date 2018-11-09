@@ -24,7 +24,15 @@ func boost():
 		$boostTime.start()
 		canBoost = false
 
-#func _ready():
+func _ready():
+	if(ab1 == "doubleJump"):
+		maxNumJumps += 1;
+	if(ab2 == "doubleJump"):
+		maxNumJumps += 1;
+	if(ab1 == "boost"):
+		boostMultiplier += 1;
+	if(ab2 == "boost"):
+		boostMultiplier +=1;
 #	xscl = (get_viewport().size.x / 1024) * .25
 #	yscl = (get_viewport().size.y / 600) * .25
 #	# Scale the sprites

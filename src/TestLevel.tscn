@@ -101,4 +101,9 @@ position = Vector2( -147.815, 259.162 )
 
 position = Vector2( -652.766, 411.414 )
 
+[node name="Block12" parent="." index="12" instance=ExtResource( 1 )]
+
+position = Vector2( 2956.14, 810.862 )
+scale = Vector2( 11.1902, 1 )
+
 

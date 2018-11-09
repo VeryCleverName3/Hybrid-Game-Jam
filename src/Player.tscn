@@ -38,10 +38,10 @@ _sections_unfolded = [ "Transform" ]
 gravity = 300
 walkspeed = 400
 jumpspeed = 300
-maxNumJumps = 2
-boostMultiplier = 2
+maxNumJumps = 1
+boostMultiplier = 1
 ab1 = "boost"
-ab2 = null
+ab2 = "doubleJump"
 
 [node name="TopSprite" type="AnimatedSprite" parent="." index="0"]
 
