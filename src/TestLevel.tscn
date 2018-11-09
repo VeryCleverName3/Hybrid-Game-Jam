@@ -3,7 +3,7 @@
 [ext_resource path="res://Block.tscn" type="PackedScene" id=1]
 [ext_resource path="res://BasicLevel.tscn" type="PackedScene" id=2]
 
-[node name="TestLevel" type="Node2D"]
+[node name="TestLevel" type="Node2D" index="0"]
 
 pause_mode = 1
 position = Vector2( 301.431, 248.117 )
@@ -45,60 +45,9 @@ position = Vector2( 470.762, 43.5388 )
 
 position = Vector2( 570.762, -31.4612 )
 
-[node name="Block6" parent="Block3" index="7" instance=ExtResource( 1 )]
-
-position = Vector2( 820.762, -37.7112 )
-
 [node name="BasicLevel" parent="." index="3" instance=ExtResource( 2 )]
 
 _sections_unfolded = [ "Transform" ]
 startPosition = Vector2( 50, 180 )
-
-[node name="Block4" parent="." index="4" instance=ExtResource( 1 )]
-
-position = Vector2( 1127.57, 845.631 )
-scale = Vector2( 14.0805, 0.670121 )
-
-[node name="Block5" parent="." index="5" instance=ExtResource( 1 )]
-
-position = Vector2( 234.477, 784.447 )
-scale = Vector2( 3.13756, 1 )
-
-[node name="Block6" parent="." index="6" instance=ExtResource( 1 )]
-
-position = Vector2( -1.01569, 743.796 )
-scale = Vector2( 1.061, 1 )
-
-[node name="Block" parent="Block6" index="2" instance=ExtResource( 1 )]
-
-position = Vector2( -205.676, -68.3245 )
-
-[node name="Block2" parent="Block6" index="3" instance=ExtResource( 1 )]
-
-position = Vector2( -352.086, -159.424 )
-
-[node name="Block3" parent="Block6" index="4" instance=ExtResource( 1 )]
-
-position = Vector2( -491.988, -263.537 )
-
-[node name="Block7" parent="." index="7" instance=ExtResource( 1 )]
-
-position = Vector2( -723.692, 314.472 )
-
-[node name="Block8" parent="." index="8" instance=ExtResource( 1 )]
-
-position = Vector2( -510.927, 248.615 )
-
-[node name="Block9" parent="." index="9" instance=ExtResource( 1 )]
-
-position = Vector2( -307.239, 177.823 )
-
-[node name="Block10" parent="." index="10" instance=ExtResource( 1 )]
-
-position = Vector2( -147.815, 259.162 )
-
-[node name="Block11" parent="." index="11" instance=ExtResource( 1 )]
-
-position = Vector2( -652.766, 411.414 )
 
 
