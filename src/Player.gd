@@ -13,18 +13,18 @@ var numJumps = 0
 signal kill
 signal pause
 
-func _ready():
-	xscl = (get_viewport().size.x / 1024) * .25
-	yscl = (get_viewport().size.y / 600) * .25
-	# Scale the sprites
-	$TopSprite.scale = Vector2(xscl, yscl)
-	$TopSprite.position = Vector2(0, -((xscl * 100) / 2))
-	$BottomSprite.scale = Vector2(xscl, yscl)
-	$BottomSprite.position = Vector2(0, (xscl * 100) / 2)
-	# Scale the collider
-	var transform = $Hitbox.shape
-	var oldscale = transform.extents
-	transform.extents = Vector2(oldscale.x * (xscl * 2), oldscale.y * (2 * yscl))
+#func _ready():
+#	xscl = (get_viewport().size.x / 1024) * .25
+#	yscl = (get_viewport().size.y / 600) * .25
+#	# Scale the sprites
+#	$TopSprite.scale = Vector2(xscl, yscl)
+#	$TopSprite.position = Vector2(0, -((xscl * 100) / 2))
+#	$BottomSprite.scale = Vector2(xscl, yscl)
+#	$BottomSprite.position = Vector2(0, (xscl * 100) / 2)
+#	# Scale the collider
+#	var transform = $Hitbox.shape
+#	var oldscale = transform.extents
+#	transform.extents = Vector2(oldscale.x * (xscl * 2), oldscale.y * (2 * yscl))
 	
 func _physics_process(delta):
 	velocity.y += delta * gravity

@@ -3,7 +3,7 @@
 [ext_resource path="res://Block.tscn" type="PackedScene" id=1]
 [ext_resource path="res://BasicLevel.tscn" type="PackedScene" id=2]
 
-[node name="TestLevel" type="Node2D"]
+[node name="TestLevel" type="Node2D" index="0"]
 
 pause_mode = 1
 position = Vector2( 301.431, 248.117 )
@@ -24,6 +24,26 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 327.807, 222.221 )
 scale = Vector2( 1, 1.6 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="Block" parent="Block3" index="2" instance=ExtResource( 1 )]
+
+position = Vector2( 150.762, 56.0388 )
+
+[node name="Block2" parent="Block3" index="3" instance=ExtResource( 1 )]
+
+position = Vector2( 270.762, 6.03876 )
+
+[node name="Block3" parent="Block3" index="4" instance=ExtResource( 1 )]
+
+position = Vector2( 360.762, -87.7112 )
+
+[node name="Block4" parent="Block3" index="5" instance=ExtResource( 1 )]
+
+position = Vector2( 470.762, 43.5388 )
+
+[node name="Block5" parent="Block3" index="6" instance=ExtResource( 1 )]
+
+position = Vector2( 570.762, -31.4612 )
 
 [node name="BasicLevel" parent="." index="3" instance=ExtResource( 2 )]
 
