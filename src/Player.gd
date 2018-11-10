@@ -1,12 +1,21 @@
 extends KinematicBody2D
 
-export(int) var gravity
-export(int) var walkspeed
-export(int) var jumpspeed
+export(int) var gravity = 1000
+export(int) var walkspeed = 400
+export(int) var jumpspeed = 500
 export(int) var maxNumJumps  = 1
 export(int) var boostMultiplier = 1
 export(String) var ab1
 export(String) var ab2
+var animationPlayer
+var armOld
+var armNew
+var arm2Old
+var arm2New
+var legOld
+var legNew
+var leg2Old
+var leg2New
 var boostSpeed = 1
 var teleportNum = 1 #Teleport stuff
 var isGliding = false #It means is gliding, Keon- don't delete it
@@ -37,6 +46,15 @@ func boost():
 		canBoost = false
 
 func _ready():
+	animationPlayer = get_node("AnimationPlayer")
+	armOld = get_node("AnimationPlayer/voidtorso/voidlimbsection")
+	armNew = get_node("Torso/Arm")
+	arm2Old = get_node("AnimationPlayer/voidtorso/voidlimbsection3")
+	arm2New = get_node("Torso/Arm2")
+	legOld = get_node("AnimationPlayer/voidtorso/voidlimbsection4")
+	legNew = get_node("Torso/Leg")
+	leg2Old = get_node("AnimationPlayer/voidtorso/voidlimbsection2")
+	leg2New = get_node("Torso/Leg2")
 	if(ab1 == "doubleJump"):
 		maxNumJumps += 1;
 	if(ab2 == "doubleJump"):
@@ -50,6 +68,8 @@ func _ready():
 	if(ab2 == "wallJump"):
 		maxWallJumps += 1
 	teleportNum = 1
+	animationPlayer.play("Default")
+	
 #	xscl = (get_viewport().size.x / 1024) * .25
 #	yscl = (get_viewport().size.y / 600) * .25
 #	# Scale the sprites
@@ -63,6 +83,12 @@ func _ready():
 #	transform.extents = Vector2(oldscale.x * (xscl * 2), oldscale.y * (2 * yscl))
 	
 func _physics_process(delta):
+	print(animationPlayer.get_position_in_parent())
+	print(animationPlayer.current_animation_position)
+	armNew.transform = armOld.transform
+	arm2New.transform = arm2Old.transform
+	legNew.transform = legOld.transform
+	leg2New.transform = leg2Old.transform
 	velocity.y += delta * gravity
 	if(is_on_floor()):
 		velocity.y = 0.1
@@ -108,6 +134,12 @@ func _physics_process(delta):
 		velocity.x += walkspeed * boostSpeed * teleportNum
 	if (Input.is_action_pressed("ui_left")):
 		velocity.x -= walkspeed * boostSpeed * teleportNum
+	if(not (Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left"))):
+		animationPlayer.play("Default")
+	if(Input.is_action_just_pressed("ui_left")):
+		animationPlayer.play("Run")
+	elif(Input.is_action_just_pressed("ui_right")):
+		animationPlayer.play("Run")
 	if (Input.is_action_just_pressed("ui_space") && touchingGround):
 		velocity.y = -jumpspeed
 	elif (Input.is_action_just_pressed("ui_space") && numJumps > 0):
