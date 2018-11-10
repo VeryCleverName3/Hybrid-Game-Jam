@@ -16,6 +16,10 @@ var legOld
 var legNew
 var leg2Old
 var leg2New
+var headOld
+var headNew
+var torsoOld
+var torsoNew
 var boostSpeed = 1
 var teleportNum = 1 #Teleport stuff
 var isGliding = false #It means is gliding, Keon- don't delete it
@@ -30,6 +34,8 @@ var numJumps = 0
 var canBoost = true
 signal kill
 signal pause
+var justTouchedGround = false
+var hasJumped = false
 
 #Here's a list of ability names:
 #doubleJump
@@ -55,6 +61,10 @@ func _ready():
 	legNew = get_node("Torso/Leg")
 	leg2Old = get_node("AnimationPlayer/voidtorso/voidlimbsection2")
 	leg2New = get_node("Torso/Leg2")
+	headOld = get_node("AnimationPlayer/voidtorso/voidhead")
+	headNew = get_node("Torso/Head")
+	torsoOld = get_node("AnimationPlayer/voidtorso")
+	torsoNew = get_node("Torso")
 	if(ab1 == "doubleJump"):
 		maxNumJumps += 1;
 	if(ab2 == "doubleJump"):
@@ -94,6 +104,10 @@ func _physics_process(delta):
 		velocity.y = 0.1
 		numJumps = maxNumJumps - 1
 		wallJumps = maxWallJumps
+		justTouchedGround = true
+		hasJumped = false
+		if(touchingGround):
+			justTouchedGround = false
 		touchingGround = true
 		groundCounter = 1
 	else:
@@ -102,6 +116,9 @@ func _physics_process(delta):
 			touchingGround = false
 	if(is_on_ceiling()):
 		velocity.y = 0
+	if(animationPlayer.current_animation != "Jump" and not touchingGround and (not hasJumped)):
+		animationPlayer.play("Jump")
+		hasJumped = true
 	velocity.x = 0
 	if (Input.is_action_pressed("ui_ability1")):
 		if (ab1 =="boost"):
@@ -136,10 +153,38 @@ func _physics_process(delta):
 		velocity.x -= walkspeed * boostSpeed * teleportNum
 	if(not (Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left"))):
 		animationPlayer.play("Default")
-	if(Input.is_action_just_pressed("ui_left")):
-		animationPlayer.play("Run")
-	elif(Input.is_action_just_pressed("ui_right")):
-		animationPlayer.play("Run")
+	if(Input.is_action_just_pressed("ui_left") or justTouchedGround):
+		if(touchingGround):
+			animationPlayer.play("Run")
+		armOld.flip_h = false
+		armNew.flip_h = false
+		arm2Old.flip_h = false
+		arm2New.flip_h = false
+		legOld.flip_h = false
+		legNew.flip_h = false
+		leg2Old.flip_h = false
+		leg2New.flip_h = false
+		headOld.flip_h = false
+		headNew.flip_h = false
+		torsoOld.flip_h = false
+		torsoNew.flip_h = false
+	elif(Input.is_action_just_pressed("ui_right") or justTouchedGround):
+		if(touchingGround):
+			animationPlayer.play("Run")
+		armOld.flip_h = true
+		armNew.flip_h = true
+		arm2Old.flip_h = true
+		arm2New.flip_h = true
+		legOld.flip_h = true
+		legNew.flip_h = true
+		leg2Old.flip_h = true
+		leg2New.flip_h = true
+		headOld.flip_h = true
+		headNew.flip_h = true
+		torsoOld.flip_h = true
+		torsoNew.flip_h = true
+		
+		
 	if (Input.is_action_just_pressed("ui_space") && touchingGround):
 		velocity.y = -jumpspeed
 	elif (Input.is_action_just_pressed("ui_space") && numJumps > 0):

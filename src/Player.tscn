@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://topSpriteTest.png" type="Texture" id=2]
@@ -194,6 +194,157 @@ tracks/12/keys = {
 "values": [ 0.5 ]
 }
 
+[sub_resource type="Animation" id=6]
+
+resource_name = "Jump"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimationPlayer/voidtorso:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -0.465408, -0.465885 ), Vector2( -0.465408, -0.251247 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer/voidtorso:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimationPlayer/voidtorso/voidlimbsection4:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.137733, 11.0708 ), Vector2( -2.51594, 8.49836 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AnimationPlayer/voidtorso/voidlimbsection4:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 27.6704 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AnimationPlayer/voidtorso/voidlimbsection2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.147263, 10.97 ), Vector2( 1.97956, 9.00682 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("AnimationPlayer/voidtorso/voidlimbsection2:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -20.857 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("AnimationPlayer/voidtorso/voidlimbsection3:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.40493, -0.230408 ), Vector2( 3.94317, -4.49524 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("AnimationPlayer/voidtorso/voidlimbsection3:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -130.828 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("AnimationPlayer/voidtorso/voidlimbsection:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.0813446, -0.676826 ), Vector2( -3.70962, -5.28013 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("AnimationPlayer/voidtorso/voidlimbsection:rotation_degrees")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 139.182 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("AnimationPlayer/voidtorso/voidhead:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.026947, -11.6142 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("AnimationPlayer/voidtorso/voidhead:rotation_degrees")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
 [sub_resource type="Animation" id=5]
 
 resource_name = "Run"
@@ -370,8 +521,8 @@ walkspeed = 400
 jumpspeed = 500
 maxNumJumps = 1
 boostMultiplier = 1
-ab1 = null
-ab2 = null
+ab1 = "teleport"
+ab2 = "glide"
 
 [node name="TopSprite" type="AnimatedSprite" parent="." index="0"]
 
@@ -412,6 +563,7 @@ playback_process_mode = 0
 playback_default_blend_time = 0.0
 playback_speed = 2.0
 anims/Default = SubResource( 4 )
+anims/Jump = SubResource( 6 )
 anims/Run = SubResource( 5 )
 blend_times = [  ]
 _sections_unfolded = [ "Pause", "Playback Options" ]
@@ -419,7 +571,7 @@ _sections_unfolded = [ "Pause", "Playback Options" ]
 [node name="voidtorso" type="Sprite" parent="AnimationPlayer" index="0"]
 
 visible = false
-position = Vector2( -0.465408, -0.465885 )
+position = Vector2( -0.465408, -0.251247 )
 scale = Vector2( 3.3971, 3.17063 )
 texture = ExtResource( 4 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
@@ -440,7 +592,8 @@ __meta__ = {
 
 [node name="voidlimbsection3" type="Sprite" parent="AnimationPlayer/voidtorso" index="1"]
 
-position = Vector2( 0.40493, -0.230408 )
+position = Vector2( 3.94317, -4.49524 )
+rotation = -2.28338
 z_index = -1
 texture = ExtResource( 6 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Z Index" ]
@@ -451,7 +604,8 @@ __meta__ = {
 
 [node name="voidlimbsection" type="Sprite" parent="AnimationPlayer/voidtorso" index="2"]
 
-position = Vector2( 0.0813446, -0.676826 )
+position = Vector2( -3.70962, -5.28013 )
+rotation = 2.42919
 z_index = 1
 texture = ExtResource( 6 )
 _sections_unfolded = [ "Z Index" ]
@@ -462,7 +616,8 @@ __meta__ = {
 
 [node name="voidlimbsection2" type="Sprite" parent="AnimationPlayer/voidtorso" index="3"]
 
-position = Vector2( 0.147263, 10.97 )
+position = Vector2( 1.97956, 9.00682 )
+rotation = -0.364024
 texture = ExtResource( 6 )
 __meta__ = {
 "_edit_bone_": true,
@@ -471,7 +626,8 @@ __meta__ = {
 
 [node name="voidlimbsection4" type="Sprite" parent="AnimationPlayer/voidtorso" index="4"]
 
-position = Vector2( 0.137733, 11.0708 )
+position = Vector2( -2.51594, 8.49836 )
+rotation = 0.48294
 z_index = -1
 texture = ExtResource( 6 )
 _sections_unfolded = [ "Transform", "Z Index" ]
