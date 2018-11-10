@@ -40,8 +40,8 @@ walkspeed = 400
 jumpspeed = 300
 maxNumJumps = 1
 boostMultiplier = 1
-ab1 = "climb"
-ab2 = "teleport"
+ab1 = "wallJump"
+ab2 = "wallJump"
 
 [node name="TopSprite" type="AnimatedSprite" parent="." index="0"]
 

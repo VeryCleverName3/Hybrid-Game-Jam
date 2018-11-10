@@ -10,6 +10,8 @@ export(String) var ab2
 var boostSpeed = 1
 var teleportNum = 1 #Teleport stuff
 var isGliding = false #It means is gliding, Keon- don't delete it
+var wallJumps = 0
+var maxWallJumps = 0
 var touchingGround = false; #Setting velocity.y to 0 also makes is_on_floor() false;
 var groundCounter = 1
 var velocity = Vector2()
@@ -26,6 +28,7 @@ signal pause
 #boost
 #glide
 #climb
+#wallJump
 
 func boost():
 	if (canBoost):
@@ -42,6 +45,10 @@ func _ready():
 		boostMultiplier += 1;
 	if(ab2 == "boost"):
 		boostMultiplier +=1;
+	if(ab1 == "wallJump"):
+		maxWallJumps += 1
+	if(ab2 == "wallJump"):
+		maxWallJumps += 1
 	teleportNum = 1
 #	xscl = (get_viewport().size.x / 1024) * .25
 #	yscl = (get_viewport().size.y / 600) * .25
@@ -60,6 +67,7 @@ func _physics_process(delta):
 	if(is_on_floor()):
 		velocity.y = 0.1
 		numJumps = maxNumJumps - 1
+		wallJumps = maxWallJumps
 		touchingGround = true
 		groundCounter = 1
 	else:
@@ -76,7 +84,7 @@ func _physics_process(delta):
 			teleportNum = 1000
 		if(ab1 == "glide"):
 			isGliding = true
-		if(ab1 == "climb" and is_on_wall()):
+		if(ab1 == "climb" and is_on_wall() and velocity.y > -200):
 			velocity.y = -200
 	if (Input.is_action_pressed("ui_ability2")):
 		if (ab2 =="boost"):
@@ -85,13 +93,17 @@ func _physics_process(delta):
 			teleportNum = 1000
 		if(ab2 == "glide"):
 			isGliding = true
-		if(ab2 == "climb" and is_on_wall()):
+		if(ab2 == "climb" and is_on_wall() and velocity.y > -200):
 			velocity.y = -200
-	
+			
 	if(isGliding and velocity.y > 100):
 		velocity.y = 100
 	isGliding = false
 		
+	if(is_on_wall() and wallJumps > 0 and Input.is_action_just_pressed("ui_space")):
+		velocity.y = -jumpspeed * 1.5
+		wallJumps -= 1
+	
 	if (Input.is_action_pressed("ui_right")):
 		velocity.x += walkspeed * boostSpeed * teleportNum
 	if (Input.is_action_pressed("ui_left")):
