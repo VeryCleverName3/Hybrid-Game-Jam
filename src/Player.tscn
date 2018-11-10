@@ -570,6 +570,7 @@ _sections_unfolded = [ "Pause", "Playback Options" ]
 
 [node name="voidtorso" type="Sprite" parent="AnimationPlayer" index="0"]
 
+editor/display_folded = true
 visible = false
 position = Vector2( -0.465408, -0.251247 )
 scale = Vector2( 3.3971, 3.17063 )
