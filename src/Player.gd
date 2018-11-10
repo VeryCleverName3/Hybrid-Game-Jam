@@ -9,6 +9,7 @@ export(String) var ab1
 export(String) var ab2
 var boostSpeed = 1
 var teleportNum = 1 #Teleport stuff
+var isGliding = false #It means is gliding, Keon- don't delete it
 var touchingGround = false; #Setting velocity.y to 0 also makes is_on_floor() false;
 var groundCounter = 1
 var velocity = Vector2()
@@ -18,6 +19,12 @@ var numJumps = 0
 var canBoost = true
 signal kill
 signal pause
+
+#Here's a list of ability names:
+#doubleJump
+#teleport
+#boost
+#glide
 
 func boost():
 	if (canBoost):
@@ -66,11 +73,19 @@ func _physics_process(delta):
 			boost();
 		if(ab1 == "teleport"):
 			teleportNum = 1000
+		if(ab1 == "glide"):
+			isGliding = true
 	if (Input.is_action_pressed("ui_ability2")):
 		if (ab2 =="boost"):
 			boost();
 		if(ab2 == "teleport"):
 			teleportNum = 1000
+		if(ab2 == "glide"):
+			isGliding = true
+	
+	if(isGliding and velocity.y > 100):
+		velocity.y = 100
+	isGliding = false
 		
 	if (Input.is_action_pressed("ui_right")):
 		velocity.x += walkspeed * boostSpeed * teleportNum
