@@ -27,7 +27,7 @@ animations = [ {
 custom_solver_bias = 0.0
 extents = Vector2( 25, 50 )
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -40,7 +40,7 @@ walkspeed = 400
 jumpspeed = 300
 maxNumJumps = 1
 boostMultiplier = 1
-ab1 = "boost"
+ab1 = "teleport"
 ab2 = "doubleJump"
 
 [node name="TopSprite" type="AnimatedSprite" parent="." index="0"]

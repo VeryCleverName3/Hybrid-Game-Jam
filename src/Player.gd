@@ -8,6 +8,7 @@ export(int) var boostMultiplier = 1
 export(String) var ab1
 export(String) var ab2
 var boostSpeed = 1
+var teleportNum = 1 #Teleport stuff
 var touchingGround = false; #Setting velocity.y to 0 also makes is_on_floor() false;
 var groundCounter = 1
 var velocity = Vector2()
@@ -33,6 +34,7 @@ func _ready():
 		boostMultiplier += 1;
 	if(ab2 == "boost"):
 		boostMultiplier +=1;
+	teleportNum = 1
 #	xscl = (get_viewport().size.x / 1024) * .25
 #	yscl = (get_viewport().size.y / 600) * .25
 #	# Scale the sprites
@@ -56,11 +58,24 @@ func _physics_process(delta):
 		groundCounter -= 1
 		if(groundCounter < 0):
 			touchingGround = false
+	if(is_on_ceiling()):
+		velocity.y = 0
 	velocity.x = 0
+	if (Input.is_action_pressed("ui_ability1")):
+		if (ab1 =="boost"):
+			boost();
+		if(ab1 == "teleport"):
+			teleportNum = 1000
+	if (Input.is_action_pressed("ui_ability2")):
+		if (ab2 =="boost"):
+			boost();
+		if(ab2 == "teleport"):
+			teleportNum = 1000
+		
 	if (Input.is_action_pressed("ui_right")):
-		velocity.x += walkspeed * boostSpeed
+		velocity.x += walkspeed * boostSpeed * teleportNum
 	if (Input.is_action_pressed("ui_left")):
-		velocity.x -= walkspeed * boostSpeed
+		velocity.x -= walkspeed * boostSpeed * teleportNum
 	if (Input.is_action_just_pressed("ui_space") && touchingGround):
 		velocity.y = -jumpspeed
 	elif (Input.is_action_just_pressed("ui_space") && numJumps > 0):
@@ -68,10 +83,7 @@ func _physics_process(delta):
 		numJumps -= 1
 	if (Input.is_action_pressed("ui_cancel")):
 		emit_signal("pause")
-	if (Input.is_action_pressed("ui_ability1")):
-		if (ab1 =="boost"):
-			boost();
-		
+	teleportNum = 1
 	move_and_slide(velocity, Vector2(0, -1))
 	
 func _process(delta):

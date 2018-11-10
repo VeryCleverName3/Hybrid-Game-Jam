@@ -3,7 +3,7 @@
 [ext_resource path="res://Block.tscn" type="PackedScene" id=1]
 [ext_resource path="res://BasicLevel.tscn" type="PackedScene" id=2]
 
-[node name="TestLevel" type="Node2D"]
+[node name="TestLevel" type="Node2D" index="0"]
 
 pause_mode = 1
 position = Vector2( 301.431, 248.117 )
@@ -105,5 +105,15 @@ position = Vector2( -652.766, 411.414 )
 
 position = Vector2( 2956.14, 810.862 )
 scale = Vector2( 11.1902, 1 )
+
+[node name="Block13" parent="." index="13" instance=ExtResource( 1 )]
+
+position = Vector2( -1096.48, 747.454 )
+scale = Vector2( 1.23408, 76.4345 )
+
+[node name="Block" parent="Block13" index="2" instance=ExtResource( 1 )]
+
+position = Vector2( 3869.65, 0.539685 )
+scale = Vector2( 0.909298, 1.35157 )
 
 
