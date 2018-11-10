@@ -25,6 +25,7 @@ signal pause
 #teleport
 #boost
 #glide
+#climb
 
 func boost():
 	if (canBoost):
@@ -75,6 +76,8 @@ func _physics_process(delta):
 			teleportNum = 1000
 		if(ab1 == "glide"):
 			isGliding = true
+		if(ab1 == "climb" and is_on_wall()):
+			velocity.y = -200
 	if (Input.is_action_pressed("ui_ability2")):
 		if (ab2 =="boost"):
 			boost();
@@ -82,6 +85,8 @@ func _physics_process(delta):
 			teleportNum = 1000
 		if(ab2 == "glide"):
 			isGliding = true
+		if(ab2 == "climb" and is_on_wall()):
+			velocity.y = -200
 	
 	if(isGliding and velocity.y > 100):
 		velocity.y = 100
