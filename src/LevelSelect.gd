@@ -16,4 +16,5 @@ func _ready():
 
 
 func _on_TestLevel_pressed():
-	switcher.switch_scene("res://TestLevel.tscn")
+	PlayerVars.levelGoal = "res://TestLevel.tscn"
+	switcher.switch_scene("res://AbilitySelect.tscn")
