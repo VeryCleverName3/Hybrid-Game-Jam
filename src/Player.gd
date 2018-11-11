@@ -67,8 +67,14 @@ func _ready():
 	torsoNew = get_node("Torso")
 	if(ab1 == "doubleJump"):
 		maxNumJumps += 1;
+		headNew.texture = load("res://PlayerSprites/ninjahead.png")
+		torsoNew.texture = load("res://PlayerSprites/ninjatorso.png")
 	if(ab2 == "doubleJump"):
 		maxNumJumps += 1;
+		armNew.texture = load("res://PlayerSprites/ninjaarm.png")
+		arm2New.texture = load("res://PlayerSprites/ninjaarm.png")
+		legNew.texture = load("res://PlayerSprites/ninjaarm.png")
+		leg2New.texture = load("res://PlayerSprites/ninjaarm.png")
 	if(ab1 == "boost"):
 		boostMultiplier += 1;
 	if(ab2 == "boost"):
@@ -77,6 +83,14 @@ func _ready():
 		maxWallJumps += 1
 	if(ab2 == "wallJump"):
 		maxWallJumps += 1
+	if(ab1 == "teleport"):
+		headNew.texture = load("res://PlayerSprites/voidhead.png")
+		torsoNew.texture = load("res://PlayerSprites/voidtorso.png")
+	if(ab2 == "teleport"):
+		armNew.texture = load("res://PlayerSprites/voidlimbsection.png")
+		arm2New.texture = load("res://PlayerSprites/voidlimbsection.png")
+		legNew.texture = load("res://PlayerSprites/voidlimbsection.png")
+		leg2New.texture = load("res://PlayerSprites/voidlimbsection.png")
 	teleportNum = 1
 	animationPlayer.play("Default")
 	
@@ -93,8 +107,6 @@ func _ready():
 #	transform.extents = Vector2(oldscale.x * (xscl * 2), oldscale.y * (2 * yscl))
 	
 func _physics_process(delta):
-	print(animationPlayer.get_position_in_parent())
-	print(animationPlayer.current_animation_position)
 	armNew.transform = armOld.transform
 	arm2New.transform = arm2Old.transform
 	legNew.transform = legOld.transform
@@ -149,28 +161,6 @@ func _physics_process(delta):
 	
 	if (Input.is_action_pressed("ui_right")):
 		velocity.x += walkspeed * boostSpeed * teleportNum
-	if (Input.is_action_pressed("ui_left")):
-		velocity.x -= walkspeed * boostSpeed * teleportNum
-	if(not (Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left")) and touchingGround):
-		animationPlayer.play("Default")
-	if(Input.is_action_just_pressed("ui_left") or justTouchedGround):
-		if(touchingGround):
-			animationPlayer.play("Run")
-		armOld.flip_h = false
-		armNew.flip_h = false
-		arm2Old.flip_h = false
-		arm2New.flip_h = false
-		legOld.flip_h = false
-		legNew.flip_h = false
-		leg2Old.flip_h = false
-		leg2New.flip_h = false
-		headOld.flip_h = false
-		headNew.flip_h = false
-		torsoOld.flip_h = false
-		torsoNew.flip_h = false
-	elif(Input.is_action_just_pressed("ui_right") or justTouchedGround):
-		if(touchingGround):
-			animationPlayer.play("Run")
 		armOld.flip_h = true
 		armNew.flip_h = true
 		arm2Old.flip_h = true
@@ -183,6 +173,28 @@ func _physics_process(delta):
 		headNew.flip_h = true
 		torsoOld.flip_h = true
 		torsoNew.flip_h = true
+	if (Input.is_action_pressed("ui_left")):
+		armOld.flip_h = false
+		armNew.flip_h = false
+		arm2Old.flip_h = false
+		arm2New.flip_h = false
+		legOld.flip_h = false
+		legNew.flip_h = false
+		leg2Old.flip_h = false
+		leg2New.flip_h = false
+		headOld.flip_h = false
+		headNew.flip_h = false
+		torsoOld.flip_h = false
+		torsoNew.flip_h = false
+		velocity.x -= walkspeed * boostSpeed * teleportNum
+	if(not (Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left")) and touchingGround):
+		animationPlayer.play("Default")
+	if(Input.is_action_just_pressed("ui_left") or justTouchedGround):
+		if(touchingGround):
+			animationPlayer.play("Run")
+	elif(Input.is_action_just_pressed("ui_right") or justTouchedGround):
+		if(touchingGround):
+			animationPlayer.play("Run")
 		
 		
 	if (Input.is_action_just_pressed("ui_space") && touchingGround):
