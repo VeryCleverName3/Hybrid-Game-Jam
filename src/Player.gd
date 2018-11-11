@@ -151,7 +151,7 @@ func _physics_process(delta):
 		velocity.x += walkspeed * boostSpeed * teleportNum
 	if (Input.is_action_pressed("ui_left")):
 		velocity.x -= walkspeed * boostSpeed * teleportNum
-	if(not (Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left"))):
+	if(not (Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left")) and touchingGround):
 		animationPlayer.play("Default")
 	if(Input.is_action_just_pressed("ui_left") or justTouchedGround):
 		if(touchingGround):
