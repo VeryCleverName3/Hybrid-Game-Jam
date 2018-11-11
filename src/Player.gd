@@ -1,12 +1,25 @@
 extends KinematicBody2D
 
-export(int) var gravity
-export(int) var walkspeed
-export(int) var jumpspeed
+export(int) var gravity = 1000
+export(int) var walkspeed = 400
+export(int) var jumpspeed = 500
 export(int) var maxNumJumps  = 1
 export(int) var boostMultiplier = 1
 export(String) var ab1
 export(String) var ab2
+var animationPlayer
+var armOld
+var armNew
+var arm2Old
+var arm2New
+var legOld
+var legNew
+var leg2Old
+var leg2New
+var headOld
+var headNew
+var torsoOld
+var torsoNew
 var boostSpeed = 1
 var teleportNum = 1 #Teleport stuff
 var isGliding = false #It means is gliding, Keon- don't delete it
@@ -21,6 +34,8 @@ var numJumps = 0
 var canBoost = true
 signal kill
 signal pause
+var justTouchedGround = false
+var hasJumped = false
 
 #Here's a list of ability names:
 #doubleJump
@@ -37,10 +52,29 @@ func boost():
 		canBoost = false
 
 func _ready():
+	animationPlayer = get_node("AnimationPlayer")
+	armOld = get_node("AnimationPlayer/voidtorso/voidlimbsection")
+	armNew = get_node("Torso/Arm")
+	arm2Old = get_node("AnimationPlayer/voidtorso/voidlimbsection3")
+	arm2New = get_node("Torso/Arm2")
+	legOld = get_node("AnimationPlayer/voidtorso/voidlimbsection4")
+	legNew = get_node("Torso/Leg")
+	leg2Old = get_node("AnimationPlayer/voidtorso/voidlimbsection2")
+	leg2New = get_node("Torso/Leg2")
+	headOld = get_node("AnimationPlayer/voidtorso/voidhead")
+	headNew = get_node("Torso/Head")
+	torsoOld = get_node("AnimationPlayer/voidtorso")
+	torsoNew = get_node("Torso")
 	if(ab1 == "doubleJump"):
 		maxNumJumps += 1;
+		headNew.texture = load("res://PlayerSprites/ninjahead.png")
+		torsoNew.texture = load("res://PlayerSprites/ninjatorso.png")
 	if(ab2 == "doubleJump"):
 		maxNumJumps += 1;
+		armNew.texture = load("res://PlayerSprites/ninjaarm.png")
+		arm2New.texture = load("res://PlayerSprites/ninjaarm.png")
+		legNew.texture = load("res://PlayerSprites/ninjaarm.png")
+		leg2New.texture = load("res://PlayerSprites/ninjaarm.png")
 	if(ab1 == "boost"):
 		boostMultiplier += 1;
 	if(ab2 == "boost"):
@@ -49,7 +83,17 @@ func _ready():
 		maxWallJumps += 1
 	if(ab2 == "wallJump"):
 		maxWallJumps += 1
+	if(ab1 == "teleport"):
+		headNew.texture = load("res://PlayerSprites/voidhead.png")
+		torsoNew.texture = load("res://PlayerSprites/voidtorso.png")
+	if(ab2 == "teleport"):
+		armNew.texture = load("res://PlayerSprites/voidlimbsection.png")
+		arm2New.texture = load("res://PlayerSprites/voidlimbsection.png")
+		legNew.texture = load("res://PlayerSprites/voidlimbsection.png")
+		leg2New.texture = load("res://PlayerSprites/voidlimbsection.png")
 	teleportNum = 1
+	animationPlayer.play("Default")
+	
 #	xscl = (get_viewport().size.x / 1024) * .25
 #	yscl = (get_viewport().size.y / 600) * .25
 #	# Scale the sprites
@@ -63,11 +107,19 @@ func _ready():
 #	transform.extents = Vector2(oldscale.x * (xscl * 2), oldscale.y * (2 * yscl))
 	
 func _physics_process(delta):
+	armNew.transform = armOld.transform
+	arm2New.transform = arm2Old.transform
+	legNew.transform = legOld.transform
+	leg2New.transform = leg2Old.transform
 	velocity.y += delta * gravity
 	if(is_on_floor()):
 		velocity.y = 0.1
 		numJumps = maxNumJumps - 1
 		wallJumps = maxWallJumps
+		justTouchedGround = true
+		hasJumped = false
+		if(touchingGround):
+			justTouchedGround = false
 		touchingGround = true
 		groundCounter = 1
 	else:
@@ -76,6 +128,9 @@ func _physics_process(delta):
 			touchingGround = false
 	if(is_on_ceiling()):
 		velocity.y = 0
+	if(animationPlayer.current_animation != "Jump" and not touchingGround and (not hasJumped)):
+		animationPlayer.play("Jump")
+		hasJumped = true
 	velocity.x = 0
 	if (Input.is_action_pressed("ui_ability1")):
 		if (ab1 =="boost"):
@@ -106,8 +161,42 @@ func _physics_process(delta):
 	
 	if (Input.is_action_pressed("ui_right")):
 		velocity.x += walkspeed * boostSpeed * teleportNum
+		armOld.flip_h = true
+		armNew.flip_h = true
+		arm2Old.flip_h = true
+		arm2New.flip_h = true
+		legOld.flip_h = true
+		legNew.flip_h = true
+		leg2Old.flip_h = true
+		leg2New.flip_h = true
+		headOld.flip_h = true
+		headNew.flip_h = true
+		torsoOld.flip_h = true
+		torsoNew.flip_h = true
 	if (Input.is_action_pressed("ui_left")):
+		armOld.flip_h = false
+		armNew.flip_h = false
+		arm2Old.flip_h = false
+		arm2New.flip_h = false
+		legOld.flip_h = false
+		legNew.flip_h = false
+		leg2Old.flip_h = false
+		leg2New.flip_h = false
+		headOld.flip_h = false
+		headNew.flip_h = false
+		torsoOld.flip_h = false
+		torsoNew.flip_h = false
 		velocity.x -= walkspeed * boostSpeed * teleportNum
+	if(not (Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left")) and touchingGround):
+		animationPlayer.play("Default")
+	if(Input.is_action_just_pressed("ui_left") or justTouchedGround):
+		if(touchingGround):
+			animationPlayer.play("Run")
+	elif(Input.is_action_just_pressed("ui_right") or justTouchedGround):
+		if(touchingGround):
+			animationPlayer.play("Run")
+		
+		
 	if (Input.is_action_just_pressed("ui_space") && touchingGround):
 		velocity.y = -jumpspeed
 	elif (Input.is_action_just_pressed("ui_space") && numJumps > 0):
