@@ -74,7 +74,7 @@ use_filter = true
 font_data = ExtResource( 10 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="AbilitySelect" type="CanvasLayer"]
+[node name="AbilitySelect" type="CanvasLayer" index="0"]
 
 layer = 1
 offset = Vector2( 0, 0 )
