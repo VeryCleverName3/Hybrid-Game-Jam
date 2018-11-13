@@ -1,11 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://topSpriteTest.png" type="Texture" id=2]
 [ext_resource path="res://bottomSpriteTest.png" type="Texture" id=3]
-[ext_resource path="res://PlayerSprites/voidtorso.png" type="Texture" id=4]
-[ext_resource path="res://PlayerSprites/voidhead.png" type="Texture" id=5]
-[ext_resource path="res://PlayerSprites/voidlimbsection.png" type="Texture" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -507,7 +504,7 @@ tracks/12/keys = {
 "values": [ 2.0 ]
 }
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -520,8 +517,6 @@ walkspeed = 400
 jumpspeed = 500
 maxNumJumps = 1
 boostMultiplier = 1
-ab1 = "doubleJump"
-ab2 = "teleport"
 
 [node name="TopSprite" type="AnimatedSprite" parent="." index="0"]
 
@@ -572,7 +567,6 @@ _sections_unfolded = [ "Pause", "Playback Options" ]
 visible = false
 position = Vector2( -0.465408, -0.465885 )
 scale = Vector2( 3.3971, 3.17063 )
-texture = ExtResource( 4 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 __meta__ = {
 "_edit_bone_": true,
@@ -582,7 +576,6 @@ __meta__ = {
 [node name="voidhead" type="Sprite" parent="AnimationPlayer/voidtorso" index="0"]
 
 position = Vector2( 0.026947, -11.6142 )
-texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_bone_": true,
@@ -593,7 +586,6 @@ __meta__ = {
 
 position = Vector2( 0.40493, -0.230408 )
 z_index = -1
-texture = ExtResource( 6 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Z Index" ]
 __meta__ = {
 "_edit_bone_": true,
@@ -604,7 +596,6 @@ __meta__ = {
 
 position = Vector2( 0.0813446, -0.676826 )
 z_index = 1
-texture = ExtResource( 6 )
 _sections_unfolded = [ "Z Index" ]
 __meta__ = {
 "_edit_bone_": true,
@@ -614,7 +605,6 @@ __meta__ = {
 [node name="voidlimbsection2" type="Sprite" parent="AnimationPlayer/voidtorso" index="3"]
 
 position = Vector2( 0.147263, 10.97 )
-texture = ExtResource( 6 )
 __meta__ = {
 "_edit_bone_": true,
 "_edit_ik_": true
@@ -624,7 +614,6 @@ __meta__ = {
 
 position = Vector2( 0.137733, 11.0708 )
 z_index = -1
-texture = ExtResource( 6 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 __meta__ = {
 "_edit_bone_": true,
@@ -634,7 +623,6 @@ __meta__ = {
 [node name="Torso" type="Sprite" parent="." index="5"]
 
 scale = Vector2( 3.3971, 3.17063 )
-texture = ExtResource( 4 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 __meta__ = {
 "_edit_bone_": true,
@@ -644,7 +632,7 @@ __meta__ = {
 [node name="Head" type="Sprite" parent="Torso" index="0"]
 
 position = Vector2( 0.026947, -11.6142 )
-texture = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_bone_": true,
 "_edit_ik_": true
@@ -654,8 +642,7 @@ __meta__ = {
 
 position = Vector2( 0.40493, -0.230408 )
 z_index = -1
-texture = ExtResource( 6 )
-_sections_unfolded = [ "Animation", "Offset", "Region", "Z Index" ]
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Z Index" ]
 __meta__ = {
 "_edit_bone_": true,
 "_edit_ik_": true
@@ -664,7 +651,7 @@ __meta__ = {
 [node name="Arm2" type="Sprite" parent="Torso" index="2"]
 
 position = Vector2( 0.0813446, -0.676826 )
-texture = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_bone_": true,
 "_edit_ik_": true
@@ -673,7 +660,7 @@ __meta__ = {
 [node name="Leg" type="Sprite" parent="Torso" index="3"]
 
 position = Vector2( 0.147263, 10.97 )
-texture = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_bone_": true,
 "_edit_ik_": true
@@ -683,8 +670,7 @@ __meta__ = {
 
 position = Vector2( 0.137733, 11.0708 )
 z_index = -1
-texture = ExtResource( 6 )
-_sections_unfolded = [ "Z Index" ]
+_sections_unfolded = [ "Transform", "Z Index" ]
 __meta__ = {
 "_edit_bone_": true,
 "_edit_ik_": true

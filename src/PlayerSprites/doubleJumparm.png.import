@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/voidtorso.png-2b7a2ac21cce1bbed2f9b9f0d355a199.stex"
+path="res://.import/doubleJumparm.png-9d0a2674e3093d1f39297abba3eef56f.stex"
 
 [deps]
 
-source_file="res://PlayerSprites/voidtorso.png"
-dest_files=[ "res://.import/voidtorso.png-2b7a2ac21cce1bbed2f9b9f0d355a199.stex" ]
+source_file="res://PlayerSprites/doubleJumparm.png"
+dest_files=[ "res://.import/doubleJumparm.png-9d0a2674e3093d1f39297abba3eef56f.stex" ]
 
 [params]
 

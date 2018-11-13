@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ninjahead.png-b37751a0c8b050aaa6088823cc6e39e6.stex"
+path="res://.import/teleporttorso.png-08f6f2868428346c7f9e1d47d39faef0.stex"
 
 [deps]
 
-source_file="res://PlayerSprites/ninjahead.png"
-dest_files=[ "res://.import/ninjahead.png-b37751a0c8b050aaa6088823cc6e39e6.stex" ]
+source_file="res://PlayerSprites/teleporttorso.png"
+dest_files=[ "res://.import/teleporttorso.png-08f6f2868428346c7f9e1d47d39faef0.stex" ]
 
 [params]
 

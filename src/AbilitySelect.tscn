@@ -1,36 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://AbilitySelect.gd" type="Script" id=1]
-[ext_resource path="res://tptop.png" type="Texture" id=2]
-[ext_resource path="res://BoostTop.png" type="Texture" id=3]
-[ext_resource path="res://DJTop.png" type="Texture" id=4]
-[ext_resource path="res://TopPic.gd" type="Script" id=5]
-[ext_resource path="res://Tpbottom.png" type="Texture" id=6]
-[ext_resource path="res://DJbottom.png" type="Texture" id=7]
-[ext_resource path="res://BoostBottom.png" type="Texture" id=8]
-[ext_resource path="res://BottomPic.gd" type="Script" id=9]
-[ext_resource path="res://Xolonium-Regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Xolonium-Regular.ttf" type="DynamicFontData" id=2]
 
-[sub_resource type="SpriteFrames" id=1]
-
-animations = [ {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "Teleport",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "Boost",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "DoubleJump",
-"speed": 5.0
-} ]
-
-[sub_resource type="ImageTexture" id=2]
+[sub_resource type="ImageTexture" id=1]
 
 flags = 7
 storage = 0
@@ -39,40 +12,21 @@ flags = 7
 size = Vector2( 0, 0 )
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="DynamicFont" id=2]
 
-animations = [ {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "Teleport",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "DJ",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "Boost",
-"speed": 5.0
-} ]
+size = 64
+use_mipmaps = false
+use_filter = true
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="ImageTexture" id=4]
+[sub_resource type="ImageTexture" id=3]
 
 flags = 7
 storage = 0
 lossy_quality = 0.7
 flags = 7
 size = Vector2( 0, 0 )
-
-[sub_resource type="DynamicFont" id=5]
-
-size = 64
-use_mipmaps = false
-use_filter = true
-font_data = ExtResource( 10 )
-_sections_unfolded = [ "Font", "Settings" ]
 
 [node name="AbilitySelect" type="CanvasLayer" index="0"]
 
@@ -83,50 +37,16 @@ scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 script = ExtResource( 1 )
 
-[node name="TopPic" type="AnimatedSprite" parent="." index="0"]
-
-position = Vector2( 512, 250 )
-frames = SubResource( 1 )
-animation = "DoubleJump"
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="TopLeft" type="Button" parent="TopPic" index="0"]
+[node name="TopRight" type="Button" parent="." index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -122.0
-margin_top = -2.0
-margin_right = -110.0
-margin_bottom = 18.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-icon = SubResource( 2 )
-flat = false
-align = 1
-_sections_unfolded = [ "Margin" ]
-
-[node name="TopRight" type="Button" parent="TopPic" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 99.0
-margin_top = -1.0
-margin_right = 111.0
-margin_bottom = 19.0
+margin_left = 611.0
+margin_top = 249.0
+margin_right = 623.0
+margin_bottom = 269.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -142,24 +62,16 @@ flat = false
 align = 1
 _sections_unfolded = [ "Margin" ]
 
-[node name="BottomPic" type="AnimatedSprite" parent="." index="1"]
-
-position = Vector2( 512, 350 )
-frames = SubResource( 3 )
-animation = "DJ"
-script = ExtResource( 9 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="BottomRight" type="Button" parent="BottomPic" index="0"]
+[node name="TopLeft" type="Button" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 84.0
-margin_top = -1.0
-margin_right = 96.0
-margin_bottom = 19.0
+margin_left = 390.0
+margin_top = 248.0
+margin_right = 402.0
+margin_bottom = 268.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -171,33 +83,10 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
+icon = SubResource( 1 )
 flat = false
 align = 1
-
-[node name="BottomLeft" type="Button" parent="BottomPic" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -116.0
-margin_top = 1.0
-margin_right = -104.0
-margin_bottom = 21.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-icon = SubResource( 4 )
-flat = false
-align = 1
+_sections_unfolded = [ "Margin" ]
 
 [node name="Ok" type="Button" parent="." index="2"]
 
@@ -216,7 +105,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -226,14 +115,93 @@ flat = false
 align = 1
 _sections_unfolded = [ "custom_fonts" ]
 
-[connection signal="pressed" from="TopPic/TopLeft" to="TopPic" method="_on_TopLeft_pressed"]
+[node name="BottomRight" type="Button" parent="." index="3"]
 
-[connection signal="pressed" from="TopPic/TopRight" to="TopPic" method="_on_TopRight_pressed"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 596.0
+margin_top = 349.0
+margin_right = 608.0
+margin_bottom = 369.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+flat = false
+align = 1
 
-[connection signal="pressed" from="BottomPic/BottomRight" to="BottomPic" method="_on_BottomRight_pressed"]
+[node name="BottomLeft" type="Button" parent="." index="4"]
 
-[connection signal="pressed" from="BottomPic/BottomLeft" to="BottomPic" method="_on_BottomLeft_pressed"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 396.0
+margin_top = 351.0
+margin_right = 408.0
+margin_bottom = 371.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+icon = SubResource( 3 )
+flat = false
+align = 1
+
+[node name="Torso" type="Sprite" parent="." index="5"]
+
+position = Vector2( 512, 300 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Head" type="Sprite" parent="Torso" index="0"]
+
+position = Vector2( 0.026947, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Arm" type="Sprite" parent="Torso" index="1"]
+
+position = Vector2( 0.40493, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Arm2" type="Sprite" parent="Torso" index="2"]
+
+position = Vector2( 0, -0.676826 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Leg" type="Sprite" parent="Torso" index="3"]
+
+position = Vector2( 0.147263, 10.97 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Leg2" type="Sprite" parent="Torso" index="4"]
+
+position = Vector2( 0.137733, 11.0708 )
+_sections_unfolded = [ "Transform" ]
+
+[connection signal="pressed" from="TopRight" to="." method="_on_TopRight_pressed"]
+
+[connection signal="pressed" from="TopLeft" to="." method="_on_TopLeft_pressed"]
 
 [connection signal="pressed" from="Ok" to="." method="_on_Ok_pressed"]
+
+[connection signal="pressed" from="BottomRight" to="." method="_on_BottomRight_pressed"]
+
+[connection signal="pressed" from="BottomLeft" to="." method="_on_BottomLeft_pressed"]
 
 

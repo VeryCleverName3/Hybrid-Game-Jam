@@ -5,8 +5,6 @@ export(int) var walkspeed = 400
 export(int) var jumpspeed = 500
 export(int) var maxNumJumps  = 1
 export(int) var boostMultiplier = 1
-export(String) var ab1
-export(String) var ab2
 var animationPlayer
 var armOld
 var armNew
@@ -65,28 +63,28 @@ func _ready():
 	headNew = get_node("Torso/Head")
 	torsoOld = get_node("AnimationPlayer/voidtorso")
 	torsoNew = get_node("Torso")
-	if(ab1 == "doubleJump"):
+	if(PlayerVars.ab1 == "doubleJump"):
 		maxNumJumps += 1;
-		headNew.texture = load("res://PlayerSprites/ninjahead.png")
-		torsoNew.texture = load("res://PlayerSprites/ninjatorso.png")
-	if(ab2 == "doubleJump"):
+		headNew.texture = load("res://PlayerSprites/doubleJumphead.png")
+		torsoNew.texture = load("res://PlayerSprites/doubleJumptorso.png")
+	if(PlayerVars.ab2 == "doubleJump"):
 		maxNumJumps += 1;
-		armNew.texture = load("res://PlayerSprites/ninjaarm.png")
-		arm2New.texture = load("res://PlayerSprites/ninjaarm.png")
-		legNew.texture = load("res://PlayerSprites/ninjaarm.png")
-		leg2New.texture = load("res://PlayerSprites/ninjaarm.png")
-	if(ab1 == "boost"):
+		armNew.texture = load("res://PlayerSprites/doubleJumparm.png")
+		arm2New.texture = load("res://PlayerSprites/doubleJumparm.png")
+		legNew.texture = load("res://PlayerSprites/doubleJumparm.png")
+		leg2New.texture = load("res://PlayerSprites/doubleJumparm.png")
+	if(PlayerVars.ab1 == "boost"):
 		boostMultiplier += 1;
-	if(ab2 == "boost"):
+	if(PlayerVars.ab2 == "boost"):
 		boostMultiplier +=1;
-	if(ab1 == "wallJump"):
+	if(PlayerVars.ab2 == "wallJump"):
 		maxWallJumps += 1
-	if(ab2 == "wallJump"):
+	if(PlayerVars.ab2 == "wallJump"):
 		maxWallJumps += 1
-	if(ab1 == "teleport"):
+	if(PlayerVars.ab1 == "teleport"):
 		headNew.texture = load("res://PlayerSprites/voidhead.png")
 		torsoNew.texture = load("res://PlayerSprites/voidtorso.png")
-	if(ab2 == "teleport"):
+	if(PlayerVars.ab2 == "teleport"):
 		armNew.texture = load("res://PlayerSprites/voidlimbsection.png")
 		arm2New.texture = load("res://PlayerSprites/voidlimbsection.png")
 		legNew.texture = load("res://PlayerSprites/voidlimbsection.png")
@@ -133,22 +131,22 @@ func _physics_process(delta):
 		hasJumped = true
 	velocity.x = 0
 	if (Input.is_action_pressed("ui_ability1")):
-		if (ab1 =="boost"):
+		if (PlayerVars.ab1 =="boost"):
 			boost();
-		if(ab1 == "teleport"):
+		if(PlayerVars.ab1 == "teleport"):
 			teleportNum = 1000
-		if(ab1 == "glide"):
+		if(PlayerVars.ab1 == "glide"):
 			isGliding = true
-		if(ab1 == "climb" and is_on_wall() and velocity.y > -200):
+		if(PlayerVars.ab1 == "climb" and is_on_wall() and velocity.y > -200):
 			velocity.y = -200
 	if (Input.is_action_pressed("ui_ability2")):
-		if (ab2 =="boost"):
+		if (PlayerVars.ab2 =="boost"):
 			boost();
-		if(ab2 == "teleport"):
+		if(PlayerVars.ab2 == "teleport"):
 			teleportNum = 1000
-		if(ab2 == "glide"):
+		if(PlayerVars.ab2 == "glide"):
 			isGliding = true
-		if(ab2 == "climb" and is_on_wall() and velocity.y > -200):
+		if(PlayerVars.ab2 == "climb" and is_on_wall() and velocity.y > -200):
 			velocity.y = -200
 			
 	if(isGliding and velocity.y > 100):

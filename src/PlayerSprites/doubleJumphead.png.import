@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ninjaarm.png-9cdd45a86b33a18d8ed0573d1bae3762.stex"
+path="res://.import/doubleJumphead.png-1862fc9517b3112f05fa4eba2bd4fe16.stex"
 
 [deps]
 
-source_file="res://PlayerSprites/ninjaarm.png"
-dest_files=[ "res://.import/ninjaarm.png-9cdd45a86b33a18d8ed0573d1bae3762.stex" ]
+source_file="res://PlayerSprites/doubleJumphead.png"
+dest_files=[ "res://.import/doubleJumphead.png-1862fc9517b3112f05fa4eba2bd4fe16.stex" ]
 
 [params]
 
