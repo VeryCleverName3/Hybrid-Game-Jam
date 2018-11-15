@@ -71,8 +71,8 @@ func _ready():
 		maxNumJumps += 1;
 		armNew.texture = load("res://PlayerSprites/doubleJumparm.png")
 		arm2New.texture = load("res://PlayerSprites/doubleJumparm.png")
-		legNew.texture = load("res://PlayerSprites/doubleJumparm.png")
-		leg2New.texture = load("res://PlayerSprites/doubleJumparm.png")
+		legNew.texture = load("res://PlayerSprites/doubleJumpleg.png")
+		leg2New.texture = load("res://PlayerSprites/doubleJumpleg.png")
 	if(PlayerVars.ab1 == "boost"):
 		boostMultiplier += 1;
 	if(PlayerVars.ab2 == "boost"):
@@ -82,13 +82,13 @@ func _ready():
 	if(PlayerVars.ab2 == "wallJump"):
 		maxWallJumps += 1
 	if(PlayerVars.ab1 == "teleport"):
-		headNew.texture = load("res://PlayerSprites/voidhead.png")
-		torsoNew.texture = load("res://PlayerSprites/voidtorso.png")
+		headNew.texture = load("res://PlayerSprites/teleporthead.png")
+		torsoNew.texture = load("res://PlayerSprites/teleporttorso.png")
 	if(PlayerVars.ab2 == "teleport"):
-		armNew.texture = load("res://PlayerSprites/voidlimbsection.png")
-		arm2New.texture = load("res://PlayerSprites/voidlimbsection.png")
-		legNew.texture = load("res://PlayerSprites/voidlimbsection.png")
-		leg2New.texture = load("res://PlayerSprites/voidlimbsection.png")
+		armNew.texture = load("res://PlayerSprites/teleportarm.png")
+		arm2New.texture = load("res://PlayerSprites/teleportarm.png")
+		legNew.texture = load("res://PlayerSprites/teleportleg.png")
+		leg2New.texture = load("res://PlayerSprites/teleportleg.png")
 	teleportNum = 1
 	animationPlayer.play("Default")
 	

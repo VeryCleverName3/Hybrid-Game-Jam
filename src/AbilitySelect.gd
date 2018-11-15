@@ -7,18 +7,18 @@ var iconR = ImageTexture.new()
 
 func set_textures():
 	var file2check = File.new()
-	if (file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab2 + "arm.png") && file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab1 + "torso.png") && file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab1 + "head.png")):
+	if (file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab2 + "arm.png") && file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab1 + "torso.png") && file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab1 + "head.png") && file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab2 + "leg")):
 		$Torso/Arm.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "arm.png")
 		$Torso/Arm2.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "arm.png")
-		$Torso/Leg2.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "arm.png")
-		$Torso/Leg.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "arm.png")
+		$Torso/Leg2.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "leg.png")
+		$Torso/Leg.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "leg.png")
 		$Torso.texture = load("res://PlayerSprites/" + PlayerVars.ab1 + "torso.png")
 		$Torso/Head.texture = load("res://PlayerSprites/" + PlayerVars.ab1 + "head.png")
 	else:
 		$Torso/Arm.texture = load("res://PlayerSprites/nospritearm.png")
 		$Torso/Arm2.texture = load("res://PlayerSprites/nospritearm.png")
-		$Torso/Leg.texture = load("res://PlayerSprites/nospritearm.png")
-		$Torso/Leg2.texture = load("res://PlayerSprites/nospritearm.png")
+		$Torso/Leg.texture = load("res://PlayerSprites/nospriteleg.png")
+		$Torso/Leg2.texture = load("res://PlayerSprites/nospriteleg.png")
 		$Torso/Head.texture = load("res://PlayerSprites/nospritehead.png")
 		$Torso.texture = load("res://PlayerSprites/nospritetorso.png")
 
