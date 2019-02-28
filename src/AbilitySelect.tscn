@@ -167,31 +167,37 @@ align = 1
 [node name="Torso" type="Sprite" parent="." index="5"]
 
 position = Vector2( 512, 300 )
+scale = Vector2( 1.5, 1.5 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Head" type="Sprite" parent="Torso" index="0"]
 
 position = Vector2( 0.026947, 0 )
+scale = Vector2( 1.5, 1.5 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Arm" type="Sprite" parent="Torso" index="1"]
 
 position = Vector2( 0.40493, 0 )
+scale = Vector2( 1.5, 1.5 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Arm2" type="Sprite" parent="Torso" index="2"]
 
 position = Vector2( 0, -0.676826 )
+scale = Vector2( 1.5, 1.5 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Leg" type="Sprite" parent="Torso" index="3"]
 
 position = Vector2( 0.147263, 10.97 )
+scale = Vector2( 1.5, 1.5 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Leg2" type="Sprite" parent="Torso" index="4"]
 
 position = Vector2( 0.137733, 11.0708 )
+scale = Vector2( 1.5, 1.5 )
 _sections_unfolded = [ "Transform" ]
 
 [connection signal="pressed" from="TopRight" to="." method="_on_TopRight_pressed"]

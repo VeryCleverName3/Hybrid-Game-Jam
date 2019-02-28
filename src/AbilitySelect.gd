@@ -7,7 +7,7 @@ var iconR = ImageTexture.new()
 
 func set_textures():
 	var file2check = File.new()
-	if (file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab2 + "arm.png") && file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab1 + "torso.png") && file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab1 + "head.png") && file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab2 + "leg")):
+	if (file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab2 + "arm.png") && file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab1 + "torso.png") && file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab1 + "head.png") && file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab2 + "leg.png")):
 		$Torso/Arm.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "arm.png")
 		$Torso/Arm2.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "arm.png")
 		$Torso/Leg2.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "leg.png")
@@ -32,8 +32,8 @@ func _ready():
 	$TopRight.icon = iconR
 	$BottomRight.icon = iconR
 	if (PlayerVars.ab1 == null):
-		PlayerVars.ab1 = "doublejump"
-		PlayerVars.ab2 = "doublejump"
+		PlayerVars.ab1 = "doubleJump"
+		PlayerVars.ab2 = "doubleJump"
 	set_textures()
 
 #func _process(delta):
@@ -62,15 +62,55 @@ func _on_TopLeft_pressed():
 			PlayerVars.ab1 = "wallJump"
 		"wallJump":
 			PlayerVars.ab1 = "doubleJump"
+	set_textures()
 
 
 func _on_TopRight_pressed():
-	pass # replace with function body
+	match(PlayerVars.ab1):
+		"doubleJump":
+			PlayerVars.ab1 = "wallJump"
+		"teleport":
+			PlayerVars.ab1 = "doubleJump"
+		"boost":
+			PlayerVars.ab1 = "teleport"
+		"glide":
+			PlayerVars.ab1 = "boost"
+		"climb":
+			PlayerVars.ab1 = "glide"
+		"wallJump":
+			PlayerVars.ab1 = "climb"
+	set_textures()
 
 
 func _on_BottomRight_pressed():
-	pass # replace with function body
+	match(PlayerVars.ab2):
+		"doubleJump":
+			PlayerVars.ab2 = "wallJump"
+		"teleport":
+			PlayerVars.ab2 = "doubleJump"
+		"boost":
+			PlayerVars.ab2 = "teleport"
+		"glide":
+			PlayerVars.ab2 = "boost"
+		"climb":
+			PlayerVars.ab2 = "glide"
+		"wallJump":
+			PlayerVars.ab2 = "climb"
+	set_textures()
 
 
 func _on_BottomLeft_pressed():
-	pass # replace with function body
+	match(PlayerVars.ab1):
+		"doubleJump":
+			PlayerVars.ab1 = "teleport"
+		"teleport":
+			PlayerVars.ab1 = "boost"
+		"boost":
+			PlayerVars.ab1 = "glide"
+		"glide":
+			PlayerVars.ab1 = "climb"
+		"climb":
+			PlayerVars.ab1 = "wallJump"
+		"wallJump":
+			PlayerVars.ab1 = "doubleJump"
+	set_textures()

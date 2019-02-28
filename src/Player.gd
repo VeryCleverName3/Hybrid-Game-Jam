@@ -204,6 +204,11 @@ func _physics_process(delta):
 		emit_signal("pause")
 	teleportNum = 1
 	move_and_slide(velocity, Vector2(0, -1))
+	var numberOfCollisions = get_slide_count()
+	print(numberOfCollisions)
+	if numberOfCollisions > 0:
+		for i in range(get_slide_count()):
+			_on_Collision(get_slide_collision(i))
 	
 func _process(delta):
 	if (self.position.y > get_viewport().size.y):
@@ -212,3 +217,13 @@ func _process(delta):
 func _on_boostTime_timeout():
 	canBoost = true
 	boostSpeed = 1
+
+func collisionWithSpike():
+	emit_signal("kill")
+
+func _on_Collision(body):
+	print(body.collider.name)
+	print(body.collider.name.split("#")[0])
+	match body.collider.name.split("#")[0]:
+		"Spike":
+			collisionWithSpike()

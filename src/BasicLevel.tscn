@@ -4,15 +4,12 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://PauseScreen.tscn" type="PackedScene" id=3]
 
-[node name="BasicLevel" type="Node2D"]
+[node name="BasicLevel" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 startPosition = null
 
 [node name="Player" parent="." index="0" instance=ExtResource( 2 )]
-
-gravity = 1000
-jumpspeed = 500
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="3"]
 
@@ -41,6 +38,8 @@ editor_draw_drag_margin = true
 _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Smoothing", "Visibility" ]
 
 [node name="PauseScreen" parent="." index="1" instance=ExtResource( 3 )]
+
+[connection signal="kill" from="Player" to="." method="_on_Player_kill"]
 
 [connection signal="pause" from="Player" to="." method="_on_Player_pause"]
 
