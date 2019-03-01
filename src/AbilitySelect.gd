@@ -7,20 +7,24 @@ var iconR = ImageTexture.new()
 
 func set_textures():
 	var file2check = File.new()
-	if (file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab2 + "arm.png") && file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab1 + "torso.png") && file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab1 + "head.png") && file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab2 + "leg.png")):
-		$Torso/Arm.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "arm.png")
+	if (file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab2 + "arm.png") && file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab2 + "leg.png")):
 		$Torso/Arm2.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "arm.png")
+		$Torso/Arm.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "arm.png")
 		$Torso/Leg2.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "leg.png")
-		$Torso/Leg.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "leg.png")
+		$Torso/Leg2.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "leg.png")
+	else:
+		$Torso/Arm2.texture = load("res://PlayerSprites/nospritearm.png")
+		$Torso/Arm.texture = load("res://PlayerSprites/nospritearm.png")
+		$Torso/Leg.texture = load("res://PlayerSprites/nospriteleg.png")
+		$Torso/Leg2.texture = load("res://PlayerSprites/nospriteleg.png")
+		
+	if (file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab1 + "torso.png") && file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab1 + "head.png")):
 		$Torso.texture = load("res://PlayerSprites/" + PlayerVars.ab1 + "torso.png")
 		$Torso/Head.texture = load("res://PlayerSprites/" + PlayerVars.ab1 + "head.png")
 	else:
-		$Torso/Arm.texture = load("res://PlayerSprites/nospritearm.png")
-		$Torso/Arm2.texture = load("res://PlayerSprites/nospritearm.png")
-		$Torso/Leg.texture = load("res://PlayerSprites/nospriteleg.png")
-		$Torso/Leg2.texture = load("res://PlayerSprites/nospriteleg.png")
 		$Torso/Head.texture = load("res://PlayerSprites/nospritehead.png")
 		$Torso.texture = load("res://PlayerSprites/nospritetorso.png")
+		
 
 func _ready():
 	imageL.load("res://leftArrow.png")
@@ -35,6 +39,7 @@ func _ready():
 		PlayerVars.ab1 = "doubleJump"
 		PlayerVars.ab2 = "doubleJump"
 	set_textures()
+	$Torso/Camera.make_current()
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
@@ -100,17 +105,17 @@ func _on_BottomRight_pressed():
 
 
 func _on_BottomLeft_pressed():
-	match(PlayerVars.ab1):
+	match(PlayerVars.ab2):
 		"doubleJump":
-			PlayerVars.ab1 = "teleport"
+			PlayerVars.ab2 = "teleport"
 		"teleport":
-			PlayerVars.ab1 = "boost"
+			PlayerVars.ab2 = "boost"
 		"boost":
-			PlayerVars.ab1 = "glide"
+			PlayerVars.ab2 = "glide"
 		"glide":
-			PlayerVars.ab1 = "climb"
+			PlayerVars.ab2 = "climb"
 		"climb":
-			PlayerVars.ab1 = "wallJump"
+			PlayerVars.ab2 = "wallJump"
 		"wallJump":
-			PlayerVars.ab1 = "doubleJump"
+			PlayerVars.ab2 = "doubleJump"
 	set_textures()

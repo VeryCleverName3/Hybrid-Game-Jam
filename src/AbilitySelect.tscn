@@ -172,33 +172,56 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Head" type="Sprite" parent="Torso" index="0"]
 
-position = Vector2( 0.026947, 0 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 0.026947, -10 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Arm" type="Sprite" parent="Torso" index="1"]
 
-position = Vector2( 0.40493, 0 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 0.40493, -0.230408 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Arm2" type="Sprite" parent="Torso" index="2"]
 
-position = Vector2( 0, -0.676826 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 0.081345, -0.676826 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Leg" type="Sprite" parent="Torso" index="3"]
 
 position = Vector2( 0.147263, 10.97 )
-scale = Vector2( 1.5, 1.5 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Leg2" type="Sprite" parent="Torso" index="4"]
 
 position = Vector2( 0.137733, 11.0708 )
-scale = Vector2( 1.5, 1.5 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="Camera" type="Camera2D" parent="Torso" index="5"]
+
+position = Vector2( -5.7518, 84.8351 )
+scale = Vector2( 0.666667, 0.666667 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 0.75, 0.75 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Smoothing" ]
 
 [connection signal="pressed" from="TopRight" to="." method="_on_TopRight_pressed"]
 

@@ -48,7 +48,27 @@ func boost():
 		boostSpeed=boostMultiplier
 		$boostTime.start()
 		canBoost = false
-
+		
+func load_textures():
+	var file2check = File.new()
+	if (file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab2 + "arm.png") && file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab2 + "leg.png")):
+		arm2New.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "arm.png")
+		armNew.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "arm.png")
+		leg2New.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "leg.png")
+		legNew.texture = load("res://PlayerSprites/" + PlayerVars.ab2 + "leg.png")
+	else:
+		armNew.texture = load("res://PlayerSprites/nospritearm.png")
+		arm2New.texture = load("res://PlayerSprites/nospritearm.png")
+		legNew.texture = load("res://PlayerSprites/nospriteleg.png")
+		leg2New.texture = load("res://PlayerSprites/nospriteleg.png")
+		
+	if (file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab1 + "torso.png") && file2check.file_exists("res://PlayerSprites/" + PlayerVars.ab1 + "head.png")):
+		torsoNew.texture = load("res://PlayerSprites/" + PlayerVars.ab1 + "torso.png")
+		headNew.texture = load("res://PlayerSprites/" + PlayerVars.ab1 + "head.png")
+	else:
+		headNew.texture = load("res://PlayerSprites/nospritehead.png")
+		torsoNew.texture = load("res://PlayerSprites/nospritetorso.png")
+		
 func _ready():
 	animationPlayer = get_node("AnimationPlayer")
 	armOld = get_node("AnimationPlayer/voidtorso/voidlimbsection")
@@ -63,16 +83,11 @@ func _ready():
 	headNew = get_node("Torso/Head")
 	torsoOld = get_node("AnimationPlayer/voidtorso")
 	torsoNew = get_node("Torso")
+	load_textures()
 	if(PlayerVars.ab1 == "doubleJump"):
 		maxNumJumps += 1;
-		headNew.texture = load("res://PlayerSprites/doubleJumphead.png")
-		torsoNew.texture = load("res://PlayerSprites/doubleJumptorso.png")
 	if(PlayerVars.ab2 == "doubleJump"):
 		maxNumJumps += 1;
-		armNew.texture = load("res://PlayerSprites/doubleJumparm.png")
-		arm2New.texture = load("res://PlayerSprites/doubleJumparm.png")
-		legNew.texture = load("res://PlayerSprites/doubleJumpleg.png")
-		leg2New.texture = load("res://PlayerSprites/doubleJumpleg.png")
 	if(PlayerVars.ab1 == "boost"):
 		boostMultiplier += 1;
 	if(PlayerVars.ab2 == "boost"):
@@ -81,14 +96,6 @@ func _ready():
 		maxWallJumps += 1
 	if(PlayerVars.ab2 == "wallJump"):
 		maxWallJumps += 1
-	if(PlayerVars.ab1 == "teleport"):
-		headNew.texture = load("res://PlayerSprites/teleporthead.png")
-		torsoNew.texture = load("res://PlayerSprites/teleporttorso.png")
-	if(PlayerVars.ab2 == "teleport"):
-		armNew.texture = load("res://PlayerSprites/teleportarm.png")
-		arm2New.texture = load("res://PlayerSprites/teleportarm.png")
-		legNew.texture = load("res://PlayerSprites/teleportleg.png")
-		leg2New.texture = load("res://PlayerSprites/teleportleg.png")
 	teleportNum = 1
 	animationPlayer.play("Default")
 	
@@ -205,13 +212,12 @@ func _physics_process(delta):
 	teleportNum = 1
 	move_and_slide(velocity, Vector2(0, -1))
 	var numberOfCollisions = get_slide_count()
-	print(numberOfCollisions)
 	if numberOfCollisions > 0:
 		for i in range(get_slide_count()):
 			_on_Collision(get_slide_collision(i))
 	
 func _process(delta):
-	if (self.position.y > get_viewport().size.y):
+	if (self.position.y > 10000):
 		emit_signal("kill")
 
 func _on_boostTime_timeout():
@@ -222,8 +228,8 @@ func collisionWithSpike():
 	emit_signal("kill")
 
 func _on_Collision(body):
-	print(body.collider.name)
-	print(body.collider.name.split("#")[0])
 	match body.collider.name.split("#")[0]:
 		"Spike":
+			collisionWithSpike()
+		"Bottom":
 			collisionWithSpike()

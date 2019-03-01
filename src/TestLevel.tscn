@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Block.tscn" type="PackedScene" id=1]
 [ext_resource path="res://BasicLevel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Spike.tscn" type="PackedScene" id=3]
+[ext_resource path="res://BottomDeath.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Spike.tscn" type="PackedScene" id=4]
 
 [node name="TestLevel" type="Node2D"]
 
@@ -110,16 +111,23 @@ scale = Vector2( 11.1902, 1 )
 
 [node name="Block#13" parent="." index="13" instance=ExtResource( 1 )]
 
-position = Vector2( -1096.48, 747.454 )
-scale = Vector2( 1.23408, 76.4345 )
+position = Vector2( -1092.29, 1371.72 )
+scale = Vector2( 1.36502, 95.9427 )
+_sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Block" parent="Block#13" index="2" instance=ExtResource( 1 )]
 
 position = Vector2( 3869.65, 0.539685 )
 scale = Vector2( 0.909298, 1.35157 )
 
-[node name="Spike#1" parent="." index="14" instance=ExtResource( 3 )]
+[node name="Bottom" parent="." index="14" instance=ExtResource( 3 )]
 
-position = Vector2( 168.686, 242.147 )
+position = Vector2( 1618.57, 2781.88 )
+scale = Vector2( 4.875, 0.5 )
+
+[node name="Spike#1" parent="." index="15" instance=ExtResource( 4 )]
+
+position = Vector2( 598.569, 151.883 )
+scale = Vector2( 4, 4 )
 
 
