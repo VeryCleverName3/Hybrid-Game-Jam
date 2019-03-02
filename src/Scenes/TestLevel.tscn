@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Block.tscn" type="PackedScene" id=1]
-[ext_resource path="res://BasicLevel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://BottomDeath.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Spike.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/BasicLevel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Spike.tscn" type="PackedScene" id=3]
+[ext_resource path="res://TileSets/SlimeBlock.tres" type="TileSet" id=4]
 
 [node name="TestLevel" type="Node2D"]
 
@@ -55,7 +55,7 @@ position = Vector2( 820.762, -37.7112 )
 
 position = Vector2( -44, 18 )
 _sections_unfolded = [ "Transform" ]
-startPosition = Vector2( 50, 180 )
+startPosition = Vector2( 100, 180 )
 
 [node name="Block#4" parent="." index="4" instance=ExtResource( 1 )]
 
@@ -120,14 +120,30 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 position = Vector2( 3869.65, 0.539685 )
 scale = Vector2( 0.909298, 1.35157 )
 
-[node name="Bottom" parent="." index="14" instance=ExtResource( 3 )]
-
-position = Vector2( 1618.57, 2781.88 )
-scale = Vector2( 4.875, 0.5 )
-
-[node name="Spike#1" parent="." index="15" instance=ExtResource( 4 )]
+[node name="Spike#1" parent="." index="14" instance=ExtResource( 3 )]
 
 position = Vector2( 598.569, 151.883 )
 scale = Vector2( 4, 4 )
+
+[node name="Slime" type="TileMap" parent="." index="15"]
+
+mode = 0
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 50, 50 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 196605, 0, 0, 196606, 1, 0, 196607, 1, 0, 131072, 2, 0, 262141, 6, 0, 262142, 7, 0, 262143, 7, 0, 196608, 8, 0 )
+_sections_unfolded = [ "Cell" ]
 
 

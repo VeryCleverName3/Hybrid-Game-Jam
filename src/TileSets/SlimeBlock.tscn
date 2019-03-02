@@ -1,0 +1,247 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://SlimeBlock.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 25, 25 )
+
+[sub_resource type="RectangleShape2D" id=7]
+
+custom_solver_bias = 0.0
+extents = Vector2( 25, 25 )
+
+[sub_resource type="RectangleShape2D" id=8]
+
+custom_solver_bias = 0.0
+extents = Vector2( 25, 25 )
+
+[sub_resource type="RectangleShape2D" id=12]
+
+custom_solver_bias = 0.0
+extents = Vector2( 25, 25 )
+
+[sub_resource type="RectangleShape2D" id=11]
+
+custom_solver_bias = 0.0
+extents = Vector2( 25, 25 )
+
+[node name="SlimeBlock" type="Node2D"]
+
+position = Vector2( 0, -0.41578 )
+
+[node name="Slime#TopLeft" type="Sprite" parent="." index="0"]
+
+position = Vector2( 30, 30.5 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 50, 50 )
+_sections_unfolded = [ "Region", "Transform" ]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Slime#TopLeft" type="StaticBody2D" parent="Slime#TopLeft" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slime#TopLeft/Slime#TopLeft" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -25, 25, -25, -15, -15, -15, -15, -25, 25, -25, 25, 25 )
+
+[node name="Slime#Top" type="Sprite" parent="." index="1"]
+
+position = Vector2( 130, 30.5 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 50, 0, 50, 50 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="Slime#Top" type="StaticBody2D" parent="Slime#Top" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slime#Top/Slime#Top" index="0"]
+
+position = Vector2( -0.5, -0.5 )
+shape = SubResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Slime#TopRight" type="Sprite" parent="." index="2"]
+
+position = Vector2( 230, 30.5 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 100, 0, 50, 50 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="Slime#TopRight" type="StaticBody2D" parent="Slime#TopRight" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slime#TopRight/Slime#TopRight" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -25, 25, -25, -25, 15, -25, 15, -15, 25, -15, 25, 25 )
+
+[node name="Slime#Left" type="Sprite" parent="." index="3"]
+
+position = Vector2( 330, 30 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 50, 50, 50 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="Slime#Left" type="StaticBody2D" parent="Slime#Left" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slime#Left/Slime#Left" index="0"]
+
+position = Vector2( -0.5, -0.5 )
+shape = SubResource( 7 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Slime#Center" type="Sprite" parent="." index="4"]
+
+position = Vector2( 430, 30 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 50, 50, 50, 50 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="Slime#Center" type="StaticBody2D" parent="Slime#Center" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slime#Center/Slime#Center" index="0"]
+
+position = Vector2( -0.5, -0.5 )
+shape = SubResource( 8 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Slime#Right" type="Sprite" parent="." index="5"]
+
+position = Vector2( 530, 30 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 100, 50, 50, 50 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="Slime#Right" type="KinematicBody2D" parent="Slime#Right" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slime#Right/Slime#Right" index="0"]
+
+position = Vector2( -0.5, -0.5 )
+shape = SubResource( 12 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Slime#BottomLeft" type="Sprite" parent="." index="6"]
+
+position = Vector2( 630, 30 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 100, 50, 50 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="Slime#BottomLeft" type="StaticBody2D" parent="Slime#BottomLeft" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slime#BottomLeft/Slime#BottomLeft" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -15, 25, 25, 25, 25, -25, -25, -25, -25, 15, -15, 15 )
+
+[node name="Slime#Bottom" type="Sprite" parent="." index="7"]
+
+position = Vector2( 730, 30 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 50, 100, 50, 50 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="Slime#Bottom" type="StaticBody2D" parent="Slime#Bottom" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slime#Bottom/Slime#Bottom" index="0"]
+
+position = Vector2( -0.5, -0.5 )
+shape = SubResource( 11 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Slime#BottomRight" type="Sprite" parent="." index="8"]
+
+position = Vector2( 830, 30 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 100, 100, 50, 50 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="Slime#BottomRight" type="StaticBody2D" parent="Slime#BottomRight" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Slime#BottomRight/Slime#BottomRight" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -25, 25, 15, 25, 15, 15, 25, 15, 25, -25, -25, -25 )
+
+

@@ -5,6 +5,7 @@ export(int) var walkspeed = 400
 export(int) var jumpspeed = 500
 export(int) var maxNumJumps  = 1
 export(int) var boostMultiplier = 1
+export(float) var slimeBounce = 1
 var animationPlayer
 var armOld
 var armNew
@@ -70,6 +71,8 @@ func load_textures():
 		torsoNew.texture = load("res://PlayerSprites/nospritetorso.png")
 		
 func _ready():
+	#PlayerVars.ab1 = "doubleJump"
+	#PlayerVars.ab2 = "doubleJump"
 	animationPlayer = get_node("AnimationPlayer")
 	armOld = get_node("AnimationPlayer/voidtorso/voidlimbsection")
 	armNew = get_node("Torso/Arm")
@@ -112,6 +115,7 @@ func _ready():
 #	transform.extents = Vector2(oldscale.x * (xscl * 2), oldscale.y * (2 * yscl))
 	
 func _physics_process(delta):
+	friction()
 	armNew.transform = armOld.transform
 	arm2New.transform = arm2Old.transform
 	legNew.transform = legOld.transform
@@ -136,7 +140,7 @@ func _physics_process(delta):
 	if(animationPlayer.current_animation != "Jump" and not touchingGround and (not hasJumped)):
 		animationPlayer.play("Jump")
 		hasJumped = true
-	velocity.x = 0
+	#velocity.x = 0
 	if (Input.is_action_pressed("ui_ability1")):
 		if (PlayerVars.ab1 =="boost"):
 			boost();
@@ -165,7 +169,7 @@ func _physics_process(delta):
 		wallJumps -= 1
 	
 	if (Input.is_action_pressed("ui_right")):
-		velocity.x += walkspeed * boostSpeed * teleportNum
+		velocity.x = min(walkspeed * boostSpeed * teleportNum, velocity.x + walkspeed/5 * boostSpeed * teleportNum)
 		armOld.flip_h = true
 		armNew.flip_h = true
 		arm2Old.flip_h = true
@@ -191,7 +195,7 @@ func _physics_process(delta):
 		headNew.flip_h = false
 		torsoOld.flip_h = false
 		torsoNew.flip_h = false
-		velocity.x -= walkspeed * boostSpeed * teleportNum
+		velocity.x = max(-walkspeed * boostSpeed * teleportNum, velocity.x - walkspeed/5 * boostSpeed * teleportNum)
 	if(not (Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left")) and touchingGround):
 		animationPlayer.play("Default")
 	if(Input.is_action_just_pressed("ui_left") or justTouchedGround):
@@ -211,13 +215,16 @@ func _physics_process(delta):
 		emit_signal("pause")
 	teleportNum = 1
 	move_and_slide(velocity, Vector2(0, -1))
+	if (is_on_wall()):
+		velocity.x = 0
 	var numberOfCollisions = get_slide_count()
 	if numberOfCollisions > 0:
 		for i in range(get_slide_count()):
-			_on_Collision(get_slide_collision(i))
+			_on_Collision(get_slide_collision(i), delta)
 	
 func _process(delta):
 	if (self.position.y > 10000):
+		print("dying")
 		emit_signal("kill")
 
 func _on_boostTime_timeout():
@@ -226,10 +233,39 @@ func _on_boostTime_timeout():
 
 func collisionWithSpike():
 	emit_signal("kill")
+	
+func collisionWithSlime(body, delta):
+	print(slimeBounce)
+	velocity = body.remainder.bounce(body.normal) * (1/delta) * slimeBounce
+	move_and_slide(velocity)
+	
+func friction():
+	if is_on_floor():
+		if (velocity.x > 0):
+			if (velocity.x < walkspeed/5):
+				velocity.x = 0
+			else:
+				velocity.x -= walkspeed/5
+		elif (velocity.x < 0):
+			if (velocity.x > -walkspeed/5):
+				velocity.x = 0
+			else:
+				velocity.x += walkspeed/5
+	else:
+		if (velocity.x > 0):
+			if (velocity.x < walkspeed/60):
+				velocity.x = 0
+			else:
+				velocity.x -= walkspeed/60
+		elif (velocity.x < 0):
+			if (velocity.x > -walkspeed/60):
+				velocity.x = 0
+			else:
+				velocity.x += walkspeed/60
 
-func _on_Collision(body):
+func _on_Collision(body, delta):
 	match body.collider.name.split("#")[0]:
 		"Spike":
 			collisionWithSpike()
-		"Bottom":
-			collisionWithSpike()
+		"Slime":
+			collisionWithSlime(body, delta)

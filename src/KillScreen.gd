@@ -20,8 +20,8 @@ func _on_PlayAgain_pressed():
 
 
 func _on_LevelSelect_pressed():
-	switcher.switch_scene("res://LevelSelect.tscn")
+	switcher.switch_scene("res://Scenes/LevelSelect.tscn")
 
 
 func _on_MainMenu_pressed():
-	switcher.switch_scene("res://MainMenu.tscn")
+	switcher.switch_scene("res://Scenes/MainMenu.tscn")

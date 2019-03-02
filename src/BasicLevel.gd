@@ -15,7 +15,7 @@ func _ready():
 
 
 func _on_Player_kill():
-	switcher.switch_scene("res://KillScreen.tscn")
+	switcher.switch_scene("res://Scenes/KillScreen.tscn")
 
 func _on_Player_pause():
 	var children = $PauseScreen.get_children()

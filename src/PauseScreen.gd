@@ -16,12 +16,12 @@ func _on_Resume_pressed():
 
 func _on_MainMenu_pressed():
 	get_tree().paused = false
-	switcher.switch_scene("res://MainMenu.tscn")
+	switcher.switch_scene("res://Scenes/MainMenu.tscn")
 
 
 func _on_LevelSelect_pressed():
 	get_tree().paused = false
-	switcher.switch_scene("res://LevelSelect.tscn")
+	switcher.switch_scene("res://Scenes/LevelSelect.tscn")
 
 
 func _on_Reset_pressed():

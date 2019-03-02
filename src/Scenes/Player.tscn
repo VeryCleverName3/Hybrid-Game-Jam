@@ -504,7 +504,7 @@ tracks/12/keys = {
 "values": [ 2.0 ]
 }
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -517,6 +517,7 @@ walkspeed = 400
 jumpspeed = 500
 maxNumJumps = 1
 boostMultiplier = 1
+slimeBounce = 5.0
 
 [node name="TopSprite" type="AnimatedSprite" parent="." index="0"]
 
